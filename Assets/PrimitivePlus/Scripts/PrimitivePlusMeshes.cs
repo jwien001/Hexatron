@@ -28475,11 +28475,13 @@ namespace PrimitivePlus
 			mesh.RecalculateBounds();
 			mesh.Optimize();
 
-			string path = meshBasePath + name + ".asset";
-			Debug.Log ("Adding mesh to DB at " + path);
-			AssetDatabase.CreateAsset(mesh, path);
-			AssetDatabase.SaveAssets();
-			AssetDatabase.Refresh();
+			if (Toolbox.Instance.savePPMeshes) {
+				string path = meshBasePath + name + ".asset";
+				Debug.Log("Adding mesh to DB at " + path);
+				AssetDatabase.CreateAsset(mesh, path);
+				AssetDatabase.SaveAssets();
+				AssetDatabase.Refresh();
+			}
 
 			return mesh;
 		}
