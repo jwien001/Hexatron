@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEditor;
 using System.Collections;
 using System.Collections.Generic;
 
@@ -6,6 +7,8 @@ namespace PrimitivePlus
 {
 	public class PrimitivePlusMeshes
 	{
+		public static string meshBasePath = "Assets/PrimitivePlus/Meshes/";
+
 		public static Mesh GetMeshType(PrimitivePlusType type)
 		{
 			switch(type)
@@ -308,7 +311,7 @@ namespace PrimitivePlus
 				29
 			});
 			
-			return GetMesh(vertices.ToArray(), normals.ToArray(), uv.ToArray(), triangles.ToArray());
+			return GetMesh(vertices.ToArray(), normals.ToArray(), uv.ToArray(), triangles.ToArray(), "Circle2D");
 		}
 		private static Mesh m_CircleHalf2D = null;
 		private static Mesh CircleHalf2D()
@@ -389,7 +392,7 @@ namespace PrimitivePlus
 				9
 			});
 			
-			return GetMesh(vertices.ToArray(), normals.ToArray(), uv.ToArray(), triangles.ToArray());
+			return GetMesh(vertices.ToArray(), normals.ToArray(), uv.ToArray(), triangles.ToArray(), "CircleHalf2D");
 		}
 		private static Mesh m_Cone = null;
 		private static Mesh Cone()
@@ -647,7 +650,7 @@ namespace PrimitivePlus
 				24
 			});
 			
-			return GetMesh(vertices.ToArray(), normals.ToArray(), uv.ToArray(), triangles.ToArray());
+			return GetMesh(vertices.ToArray(), normals.ToArray(), uv.ToArray(), triangles.ToArray(), "Cone");
 		}
 		private static Mesh m_ConeHalf = null;
 		private static Mesh ConeHalf()
@@ -1148,7 +1151,7 @@ namespace PrimitivePlus
 				82
 			});
 			
-			return GetMesh(vertices.ToArray(), normals.ToArray(), uv.ToArray(), triangles.ToArray());
+			return GetMesh(vertices.ToArray(), normals.ToArray(), uv.ToArray(), triangles.ToArray(), "ConeHalf");
 		}
 		private static Mesh m_ConeHexagon = null;
 		private static Mesh ConeHexagon()
@@ -1271,7 +1274,7 @@ namespace PrimitivePlus
 				23
 			});
 			
-			return GetMesh(vertices.ToArray(), normals.ToArray(), uv.ToArray(), triangles.ToArray());
+			return GetMesh(vertices.ToArray(), normals.ToArray(), uv.ToArray(), triangles.ToArray(), "ConeHexagon");
 		}
 		private static Mesh m_ConePentagon = null;
 		private static Mesh ConePentagon()
@@ -1376,7 +1379,7 @@ namespace PrimitivePlus
 				19
 			});
 			
-			return GetMesh(vertices.ToArray(), normals.ToArray(), uv.ToArray(), triangles.ToArray());
+			return GetMesh(vertices.ToArray(), normals.ToArray(), uv.ToArray(), triangles.ToArray(), "ConePentagon");
 		}
 		private static Mesh m_Cross = null;
 		private static Mesh Cross()
@@ -1769,7 +1772,7 @@ namespace PrimitivePlus
 				77
 			});
 			
-			return GetMesh(vertices.ToArray(), normals.ToArray(), uv.ToArray(), triangles.ToArray());
+			return GetMesh(vertices.ToArray(), normals.ToArray(), uv.ToArray(), triangles.ToArray(), "Cross");
 		}
 		private static Mesh m_Cross2D = null;
 		private static Mesh Cross2D()
@@ -1868,7 +1871,7 @@ namespace PrimitivePlus
 				13
 			});
 			
-			return GetMesh(vertices.ToArray(), normals.ToArray(), uv.ToArray(), triangles.ToArray());
+			return GetMesh(vertices.ToArray(), normals.ToArray(), uv.ToArray(), triangles.ToArray(), "Cross2D");
 		}
 		private static Mesh m_Cube = null;
 		private static Mesh Cube()
@@ -1997,7 +2000,7 @@ namespace PrimitivePlus
 				21
 			});
 			
-			return GetMesh(vertices.ToArray(), normals.ToArray(), uv.ToArray(), triangles.ToArray());
+			return GetMesh(vertices.ToArray(), normals.ToArray(), uv.ToArray(), triangles.ToArray(), "Cube");
 		}
 		private static Mesh m_CubeCorner = null;
 		private static Mesh CubeCorner()
@@ -2234,7 +2237,7 @@ namespace PrimitivePlus
 				41
 			});
 			
-			return GetMesh(vertices.ToArray(), normals.ToArray(), uv.ToArray(), triangles.ToArray());
+			return GetMesh(vertices.ToArray(), normals.ToArray(), uv.ToArray(), triangles.ToArray(), "CubeCorner");
 		}
 		private static Mesh m_CubeCornerThin = null;
 		private static Mesh CubeCornerThin()
@@ -2423,7 +2426,7 @@ namespace PrimitivePlus
 				33
 			});
 			
-			return GetMesh(vertices.ToArray(), normals.ToArray(), uv.ToArray(), triangles.ToArray());
+			return GetMesh(vertices.ToArray(), normals.ToArray(), uv.ToArray(), triangles.ToArray(), "CubeCornerThin");
 		}
 		private static Mesh m_CubeEdgeIn = null;
 		private static Mesh CubeEdgeIn()
@@ -2777,7 +2780,7 @@ namespace PrimitivePlus
 				60
 			});
 			
-			return GetMesh(vertices.ToArray(), normals.ToArray(), uv.ToArray(), triangles.ToArray());
+			return GetMesh(vertices.ToArray(), normals.ToArray(), uv.ToArray(), triangles.ToArray(), "CubeEdgeIn");
 		}
 		private static Mesh m_CubeEdgeOut = null;
 		private static Mesh CubeEdgeOut()
@@ -3137,7 +3140,7 @@ namespace PrimitivePlus
 				72
 			});
 			
-			return GetMesh(vertices.ToArray(), normals.ToArray(), uv.ToArray(), triangles.ToArray());
+			return GetMesh(vertices.ToArray(), normals.ToArray(), uv.ToArray(), triangles.ToArray(), "CubeEdgeOut");
 		}
 		private static Mesh m_CubeHollow = null;
 		private static Mesh CubeHollow()
@@ -4142,7 +4145,7 @@ namespace PrimitivePlus
 				181
 			});
 			
-			return GetMesh(vertices.ToArray(), normals.ToArray(), uv.ToArray(), triangles.ToArray());
+			return GetMesh(vertices.ToArray(), normals.ToArray(), uv.ToArray(), triangles.ToArray(), "CubeHollow");
 		}
 		private static Mesh m_CubeHollowThin = null;
 		private static Mesh CubeHollowThin()
@@ -4853,7 +4856,7 @@ namespace PrimitivePlus
 				132
 			});
 			
-			return GetMesh(vertices.ToArray(), normals.ToArray(), uv.ToArray(), triangles.ToArray());
+			return GetMesh(vertices.ToArray(), normals.ToArray(), uv.ToArray(), triangles.ToArray(), "CubeHollowThin");
 		}
 		private static Mesh m_CubeTube = null;
 		private static Mesh CubeTube()
@@ -5114,7 +5117,7 @@ namespace PrimitivePlus
 				45
 			});
 			
-			return GetMesh(vertices.ToArray(), normals.ToArray(), uv.ToArray(), triangles.ToArray());
+			return GetMesh(vertices.ToArray(), normals.ToArray(), uv.ToArray(), triangles.ToArray(), "CubeTube");
 		}
 		private static Mesh m_Cylinder = null;
 		private static Mesh Cylinder()
@@ -5615,7 +5618,7 @@ namespace PrimitivePlus
 				82
 			});
 			
-			return GetMesh(vertices.ToArray(), normals.ToArray(), uv.ToArray(), triangles.ToArray());
+			return GetMesh(vertices.ToArray(), normals.ToArray(), uv.ToArray(), triangles.ToArray(), "Cylinder");
 		}
 		private static Mesh m_CylinderHalf = null;
 		private static Mesh CylinderHalf()
@@ -5900,7 +5903,7 @@ namespace PrimitivePlus
 				45
 			});
 			
-			return GetMesh(vertices.ToArray(), normals.ToArray(), uv.ToArray(), triangles.ToArray());
+			return GetMesh(vertices.ToArray(), normals.ToArray(), uv.ToArray(), triangles.ToArray(), "CylinderHalf");
 		}
 		private static Mesh m_CylinderTube = null;
 		private static Mesh CylinderTube()
@@ -6917,7 +6920,7 @@ namespace PrimitivePlus
 				171
 			});
 			
-			return GetMesh(vertices.ToArray(), normals.ToArray(), uv.ToArray(), triangles.ToArray());
+			return GetMesh(vertices.ToArray(), normals.ToArray(), uv.ToArray(), triangles.ToArray(), "CylinderTube");
 		}
 		private static Mesh m_CylinderTubeThin = null;
 		private static Mesh CylinderTubeThin()
@@ -7928,7 +7931,7 @@ namespace PrimitivePlus
 				169
 			});
 			
-			return GetMesh(vertices.ToArray(), normals.ToArray(), uv.ToArray(), triangles.ToArray());
+			return GetMesh(vertices.ToArray(), normals.ToArray(), uv.ToArray(), triangles.ToArray(), "CylinderTubeThin");
 		}
 		private static Mesh m_Diamond = null;
 		private static Mesh Diamond()
@@ -8045,7 +8048,7 @@ namespace PrimitivePlus
 				23
 			});
 			
-			return GetMesh(vertices.ToArray(), normals.ToArray(), uv.ToArray(), triangles.ToArray());
+			return GetMesh(vertices.ToArray(), normals.ToArray(), uv.ToArray(), triangles.ToArray(), "Diamond");
 		}
 		private static Mesh m_DiamondThick = null;
 		private static Mesh DiamondThick()
@@ -8162,7 +8165,7 @@ namespace PrimitivePlus
 				23
 			});
 			
-			return GetMesh(vertices.ToArray(), normals.ToArray(), uv.ToArray(), triangles.ToArray());
+			return GetMesh(vertices.ToArray(), normals.ToArray(), uv.ToArray(), triangles.ToArray(), "DiamondThick");
 		}
 		private static Mesh m_Heart = null;
 		private static Mesh Heart()
@@ -10652,7 +10655,7 @@ namespace PrimitivePlus
 				374
 			});
 			
-			return GetMesh(vertices.ToArray(), normals.ToArray(), uv.ToArray(), triangles.ToArray());
+			return GetMesh(vertices.ToArray(), normals.ToArray(), uv.ToArray(), triangles.ToArray(), "Heart");
 		}
 		private static Mesh m_Heart2D = null;
 		private static Mesh Heart2D()
@@ -11132,7 +11135,7 @@ namespace PrimitivePlus
 				75
 			});
 			
-			return GetMesh(vertices.ToArray(), normals.ToArray(), uv.ToArray(), triangles.ToArray());
+			return GetMesh(vertices.ToArray(), normals.ToArray(), uv.ToArray(), triangles.ToArray(), "Heart2D");
 		}
 		private static Mesh m_Hexagon2D = null;
 		private static Mesh Hexagon2D()
@@ -11183,7 +11186,7 @@ namespace PrimitivePlus
 				4
 			});
 			
-			return GetMesh(vertices.ToArray(), normals.ToArray(), uv.ToArray(), triangles.ToArray());
+			return GetMesh(vertices.ToArray(), normals.ToArray(), uv.ToArray(), triangles.ToArray(), "Hexagon2D");
 		}
 		private static Mesh m_Icosphere = null;
 		private static Mesh Icosphere()
@@ -12164,7 +12167,7 @@ namespace PrimitivePlus
 				239
 			});
 			
-			return GetMesh(vertices.ToArray(), normals.ToArray(), uv.ToArray(), triangles.ToArray());
+			return GetMesh(vertices.ToArray(), normals.ToArray(), uv.ToArray(), triangles.ToArray(), "Icosphere");
 		}
 		private static Mesh m_IcosphereSmall = null;
 		private static Mesh IcosphereSmall()
@@ -12425,7 +12428,7 @@ namespace PrimitivePlus
 				59
 			});
 			
-			return GetMesh(vertices.ToArray(), normals.ToArray(), uv.ToArray(), triangles.ToArray());
+			return GetMesh(vertices.ToArray(), normals.ToArray(), uv.ToArray(), triangles.ToArray(), "IcosphereSmall");
 		}
 		private static Mesh m_Plane = null;
 		private static Mesh Plane()
@@ -13409,7 +13412,7 @@ namespace PrimitivePlus
 				46
 			});
 			
-			return GetMesh(vertices.ToArray(), normals.ToArray(), uv.ToArray(), triangles.ToArray());
+			return GetMesh(vertices.ToArray(), normals.ToArray(), uv.ToArray(), triangles.ToArray(), "Plane");
 		}
 		private static Mesh m_PrismHexagon = null;
 		private static Mesh PrismHexagon()
@@ -13598,7 +13601,7 @@ namespace PrimitivePlus
 				33
 			});
 			
-			return GetMesh(vertices.ToArray(), normals.ToArray(), uv.ToArray(), triangles.ToArray());
+			return GetMesh(vertices.ToArray(), normals.ToArray(), uv.ToArray(), triangles.ToArray(), "PrismHexagon");
 		}
 		private static Mesh m_PrismOctagon = null;
 		private static Mesh PrismOctagon()
@@ -13847,7 +13850,7 @@ namespace PrimitivePlus
 				46
 			});
 			
-			return GetMesh(vertices.ToArray(), normals.ToArray(), uv.ToArray(), triangles.ToArray());
+			return GetMesh(vertices.ToArray(), normals.ToArray(), uv.ToArray(), triangles.ToArray(), "PrismOctagon");
 		}
 		private static Mesh m_PrismPentagon = null;
 		private static Mesh PrismPentagon()
@@ -14006,7 +14009,7 @@ namespace PrimitivePlus
 				28
 			});
 			
-			return GetMesh(vertices.ToArray(), normals.ToArray(), uv.ToArray(), triangles.ToArray());
+			return GetMesh(vertices.ToArray(), normals.ToArray(), uv.ToArray(), triangles.ToArray(), "PrismPentagon");
 		}
 		private static Mesh m_PrismTriangle = null;
 		private static Mesh PrismTriangle()
@@ -14105,7 +14108,7 @@ namespace PrimitivePlus
 				15
 			});
 			
-			return GetMesh(vertices.ToArray(), normals.ToArray(), uv.ToArray(), triangles.ToArray());
+			return GetMesh(vertices.ToArray(), normals.ToArray(), uv.ToArray(), triangles.ToArray(), "PrismTriangle");
 		}
 		private static Mesh m_Pyramid = null;
 		private static Mesh Pyramid()
@@ -14192,7 +14195,7 @@ namespace PrimitivePlus
 				15
 			});
 			
-			return GetMesh(vertices.ToArray(), normals.ToArray(), uv.ToArray(), triangles.ToArray());
+			return GetMesh(vertices.ToArray(), normals.ToArray(), uv.ToArray(), triangles.ToArray(), "Pyramid");
 		}
 		private static Mesh m_PyramidCorner = null;
 		private static Mesh PyramidCorner()
@@ -14279,7 +14282,7 @@ namespace PrimitivePlus
 				15
 			});
 			
-			return GetMesh(vertices.ToArray(), normals.ToArray(), uv.ToArray(), triangles.ToArray());
+			return GetMesh(vertices.ToArray(), normals.ToArray(), uv.ToArray(), triangles.ToArray(), "PyramidCorner");
 		}
 		private static Mesh m_PyramidTri = null;
 		private static Mesh PyramidTri()
@@ -14348,7 +14351,7 @@ namespace PrimitivePlus
 				11
 			});
 			
-			return GetMesh(vertices.ToArray(), normals.ToArray(), uv.ToArray(), triangles.ToArray());
+			return GetMesh(vertices.ToArray(), normals.ToArray(), uv.ToArray(), triangles.ToArray(), "PyramidTri");
 		}
 		private static Mesh m_Rhombus2D = null;
 		private static Mesh Rhombus2D()
@@ -14387,7 +14390,7 @@ namespace PrimitivePlus
 				0
 			});
 			
-			return GetMesh(vertices.ToArray(), normals.ToArray(), uv.ToArray(), triangles.ToArray());
+			return GetMesh(vertices.ToArray(), normals.ToArray(), uv.ToArray(), triangles.ToArray(), "Rhombus2D");
 		}
 		private static Mesh m_Sphere = null;
 		private static Mesh Sphere()
@@ -18008,7 +18011,7 @@ namespace PrimitivePlus
 				427
 			});
 			
-			return GetMesh(vertices.ToArray(), normals.ToArray(), uv.ToArray(), triangles.ToArray());
+			return GetMesh(vertices.ToArray(), normals.ToArray(), uv.ToArray(), triangles.ToArray(), "Sphere");
 		}
 		private static Mesh m_SphereHalf = null;
 		private static Mesh SphereHalf()
@@ -19526,7 +19529,7 @@ namespace PrimitivePlus
 				178
 			});
 			
-			return GetMesh(vertices.ToArray(), normals.ToArray(), uv.ToArray(), triangles.ToArray());
+			return GetMesh(vertices.ToArray(), normals.ToArray(), uv.ToArray(), triangles.ToArray(), "SphereHalf");
 		}
 		private static Mesh m_Star = null;
 		private static Mesh Star()
@@ -19757,7 +19760,7 @@ namespace PrimitivePlus
 				47
 			});
 			
-			return GetMesh(vertices.ToArray(), normals.ToArray(), uv.ToArray(), triangles.ToArray());
+			return GetMesh(vertices.ToArray(), normals.ToArray(), uv.ToArray(), triangles.ToArray(), "Star");
 		}
 		private static Mesh m_Star2D = null;
 		private static Mesh Star2D()
@@ -19832,7 +19835,7 @@ namespace PrimitivePlus
 				3
 			});
 			
-			return GetMesh(vertices.ToArray(), normals.ToArray(), uv.ToArray(), triangles.ToArray());
+			return GetMesh(vertices.ToArray(), normals.ToArray(), uv.ToArray(), triangles.ToArray(), "Star2D");
 		}
 		private static Mesh m_Torus = null;
 		private static Mesh Torus()
@@ -25373,7 +25376,7 @@ namespace PrimitivePlus
 				356
 			});
 			
-			return GetMesh(vertices.ToArray(), normals.ToArray(), uv.ToArray(), triangles.ToArray());
+			return GetMesh(vertices.ToArray(), normals.ToArray(), uv.ToArray(), triangles.ToArray(), "Torus");
 		}
 		private static Mesh m_TorusHalf = null;
 		private static Mesh TorusHalf()
@@ -28328,7 +28331,7 @@ namespace PrimitivePlus
 				379
 			});
 			
-			return GetMesh(vertices.ToArray(), normals.ToArray(), uv.ToArray(), triangles.ToArray());
+			return GetMesh(vertices.ToArray(), normals.ToArray(), uv.ToArray(), triangles.ToArray(), "TorusHalf");
 		}
 		private static Mesh m_Triangle2D = null;
 		private static Mesh Triangle2D()
@@ -28361,7 +28364,7 @@ namespace PrimitivePlus
 				2
 			});
 			
-			return GetMesh(vertices.ToArray(), normals.ToArray(), uv.ToArray(), triangles.ToArray());
+			return GetMesh(vertices.ToArray(), normals.ToArray(), uv.ToArray(), triangles.ToArray(), "Triangle2D");
 		}
 		private static Mesh m_Wedge = null;
 		private static Mesh Wedge()
@@ -28460,9 +28463,9 @@ namespace PrimitivePlus
 				15
 			});
 			
-			return GetMesh(vertices.ToArray(), normals.ToArray(), uv.ToArray(), triangles.ToArray());
+			return GetMesh(vertices.ToArray(), normals.ToArray(), uv.ToArray(), triangles.ToArray(), "Wedge");
 		}
-		private static Mesh GetMesh(Vector3[] vertices, Vector3[] normals, Vector2[] uv, int[] triangles)
+		private static Mesh GetMesh(Vector3[] vertices, Vector3[] normals, Vector2[] uv, int[] triangles, string name)
 		{
 			Mesh mesh = new Mesh();
 			mesh.vertices = vertices;
@@ -28471,6 +28474,13 @@ namespace PrimitivePlus
 			mesh.triangles = triangles;
 			mesh.RecalculateBounds();
 			mesh.Optimize();
+
+			string path = meshBasePath + name + ".asset";
+			Debug.Log ("Adding mesh to DB at " + path);
+			AssetDatabase.CreateAsset(mesh, path);
+			AssetDatabase.SaveAssets();
+			AssetDatabase.Refresh();
+
 			return mesh;
 		}
 	}
