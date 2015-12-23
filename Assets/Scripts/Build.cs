@@ -1,14 +1,12 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Build : MonoBehaviour
-{
+public class Build : MonoBehaviour {
 
 	public int mapSize;
 	public Transform hex;
 
-	void Start()
-	{
+	void Awake() {
 		/**
 		 * All hex math sourced from http://www.redblobgames.com/grids/hexagons/
 		 **/
@@ -23,7 +21,7 @@ public class Build : MonoBehaviour
 			for (int r = r1; r <= r2; r++) {
 				// Convert axial coordinates to pixels
 				float x = size * Mathf.Sqrt(3f) * (q + r / 2f);
-				float z = size * 3f/2f * r;
+				float z = size * 3f / 2f * r;
 
 				Instantiate(hex, new Vector3(x, 0, z), Quaternion.identity);
 			}
