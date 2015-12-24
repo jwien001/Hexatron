@@ -7,6 +7,7 @@ namespace PrimitivePlus
 {
 	public class PrimitivePlusMeshes
 	{
+		public static bool SAVE_MESHES = false;
 		public static string meshBasePath = "Assets/PrimitivePlus/Meshes/";
 
 		public static Mesh GetMeshType(PrimitivePlusType type)
@@ -28475,7 +28476,7 @@ namespace PrimitivePlus
 			mesh.RecalculateBounds();
 			mesh.Optimize();
 
-			if (Toolbox.Instance.savePPMeshes) {
+			if (SAVE_MESHES) {
 				string path = meshBasePath + name + ".asset";
 				Debug.Log("Adding mesh to DB at " + path);
 				AssetDatabase.CreateAsset(mesh, path);
