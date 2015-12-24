@@ -21,7 +21,9 @@ public class Build : MonoBehaviour {
 		float hexHeight = hex.lossyScale.y;
 		float wallHeight = wall.lossyScale.y;
 
+		// Generate the map one tile bigger than requested, making the outermost tiles walls
 		int mapSizeWithWall = mapSize + 1;
+
 		for (int q = -mapSizeWithWall; q <= mapSizeWithWall; q++) {
 			int r1 = Mathf.Max(-mapSizeWithWall, -q - mapSizeWithWall);
 			int r2 = Mathf.Min(mapSizeWithWall, -q + mapSizeWithWall);
@@ -34,6 +36,8 @@ public class Build : MonoBehaviour {
 
 				if (IsEdge(q, r, s, mapSizeWithWall)) {
 					Transform newWall = (Transform) Instantiate(wall, new Vector3(x, wallHeight / 2f, z), Quaternion.identity);
+
+					// Add twice the hex gap to the scale so that there is no gap in between wall pieces
 					newWall.localScale += new Vector3(hexGap * Toolbox.Instance.hexRatio * 2, 0, hexGap * 2);
 				} else {
 					Instantiate(hex, new Vector3(x, -1 * hexHeight / 2f, z), Quaternion.identity);
