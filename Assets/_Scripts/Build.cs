@@ -5,6 +5,7 @@ public class Build : MonoBehaviour {
 
 	public int mapSize;
 	public Transform hex;
+	public float hexYOffset = 0;
 	public float hexGap;
 	public Transform wall;
 	public Transform underglow;
@@ -18,7 +19,6 @@ public class Build : MonoBehaviour {
 		// which is half the width (equates to scale) of the hexagon in the z-axis.
 		float spacing = (hex.lossyScale.z / 2f) + hexGap;
 
-		float hexHeight = hex.lossyScale.y;
 		float wallHeight = wall.lossyScale.y;
 
 		// Generate the map one tile bigger than requested, making the outermost tiles walls
@@ -40,7 +40,7 @@ public class Build : MonoBehaviour {
 					// Add twice the hex gap to the scale so that there is no gap in between wall pieces
 					newWall.localScale += new Vector3(hexGap * Toolbox.Instance.hexRatio * 2, 0, hexGap * 2);
 				} else {
-					Instantiate(hex, new Vector3(x, -1 * hexHeight / 2f, z), Quaternion.identity);
+					Instantiate(hex, new Vector3(x, hexYOffset, z), Quaternion.identity);
 				}
 			}
 		}

@@ -6,6 +6,6 @@ public class Toolbox : Singleton<Toolbox> {
 	[HideInInspector] public float hexRatio = Mathf.Sqrt(3f) / 2f;
 
 	void Awake () {
-		// Your initialization code here
+		DontDestroyOnLoad(gameObject);
 	}
 }
