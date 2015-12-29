@@ -8,4 +8,11 @@ public class Toolbox : Singleton<Toolbox> {
 	void Awake () {
 		DontDestroyOnLoad(gameObject);
 	}
+
+	public static float DistanceXZ(Vector3 a3, Vector3 b3) {
+		Vector2 a2 = new Vector2(a3.x, a3.z);
+		Vector2 b2 = new Vector2(b3.x, b3.z);
+
+		return Vector2.Distance(a2, b2);
+	}
 }

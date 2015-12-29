@@ -6,24 +6,49 @@ public class PlayerController : MonoBehaviour {
 
 	public float speed;
 
-	private static int LEFT 	= -60;
-	private static int RIGHT	= 60;
+	private static float LEFT 	= -60;
+	private static float RIGHT	= 60;
+
+	private GameObject currentHex = null;
 
 	void Update() {
-		transform.position += transform.forward * speed * Time.deltaTime;
+		Vector3 newPos = transform.position + (transform.forward * speed * Time.deltaTime);
 
-		if (Input.GetKeyDown(KeyCode.A))
-			transform.Rotate(new Vector3(0, LEFT, 0));
-		else if (Input.GetKeyDown(KeyCode.D))
-			transform.Rotate(new Vector3(0, RIGHT, 0));
+		if (currentHex != null) {
+			float travelDist = Toolbox.DistanceXZ(transform.position, newPos);
+			float centerDist = Toolbox.DistanceXZ(transform.position, currentHex.transform.position);
+			float turnAngle = GetTurnAngle();
+
+			if (travelDist > centerDist && turnAngle != 0) {
+				transform.Rotate(new Vector3(0, turnAngle, 0));
+
+				newPos = currentHex.transform.position;
+				newPos.y = transform.position.y;
+
+				currentHex = null;
+			}
+		}
+
+		transform.position = newPos;
 	}
 
 	void OnTriggerEnter(Collider other) {
-		Vector3 center = other.gameObject.transform.position;
-		Debug.Log("Collided with hex centered at (" + center.x + ", " + center.z + ")");
-
 		if (other.gameObject.CompareTag("Wall")) {
 			SceneManager.LoadScene(SceneManager.GetActiveScene().name);
 		}
+
+		if (other.gameObject.CompareTag("Hex")) {
+			currentHex = other.gameObject;
+		}
+	}
+
+	float GetTurnAngle() {
+		if (Input.GetKey(KeyCode.A))
+			return LEFT;
+
+		if (Input.GetKey(KeyCode.D))
+			return RIGHT;
+
+		return 0;
 	}
 }
