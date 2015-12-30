@@ -5,11 +5,16 @@ using System.Collections;
 public class PlayerController : MonoBehaviour {
 
 	public float speed;
+	[HideInInspector] public Color color = Color.red;
 
 	private static float LEFT 	= -60;
 	private static float RIGHT	= 60;
 
 	private GameObject currentHex = null;
+
+	void Start() {
+		GetComponent<Renderer>().material.color = color;
+	}
 
 	void Update() {
 		Vector3 newPos = transform.position + (transform.forward * speed * Time.deltaTime);
@@ -17,13 +22,15 @@ public class PlayerController : MonoBehaviour {
 		if (currentHex != null) {
 			float travelDist = Toolbox.DistanceXZ(transform.position, newPos);
 			float centerDist = Toolbox.DistanceXZ(transform.position, currentHex.transform.position);
-			float turnAngle = GetTurnAngle();
 
-			if (travelDist > centerDist && turnAngle != 0) {
-				transform.Rotate(new Vector3(0, turnAngle, 0));
+			if (travelDist > centerDist) {
+				float turnAngle = GetTurnAngle();
+				if (turnAngle != 0) {
+					transform.Rotate(new Vector3(0, turnAngle, 0));
 
-				newPos = currentHex.transform.position;
-				newPos.y = transform.position.y;
+					newPos = currentHex.transform.position;
+					newPos.y = transform.position.y;
+				}
 
 				currentHex = null;
 			}
@@ -33,7 +40,7 @@ public class PlayerController : MonoBehaviour {
 	}
 
 	void OnTriggerEnter(Collider other) {
-		if (other.gameObject.CompareTag("Wall")) {
+		if (isCollisionFatal(other)) {
 			SceneManager.LoadScene(SceneManager.GetActiveScene().name);
 		}
 
@@ -50,5 +57,17 @@ public class PlayerController : MonoBehaviour {
 			return RIGHT;
 
 		return 0;
+	}
+
+	bool isCollisionFatal(Collider other) {
+		GameObject otherObj = other.gameObject;
+
+		if (otherObj.CompareTag("Wall"))
+			return true;
+
+		if (otherObj.CompareTag("Hex") && otherObj.GetComponentInChildren<MoveHex>().IsActivated())
+			return true;
+
+		return false;
 	}
 }
