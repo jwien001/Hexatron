@@ -10,6 +10,7 @@ public class PlayerController : MonoBehaviour {
 	private static float LEFT 	= -60;
 	private static float RIGHT	= 60;
 
+	private float turnAngle = 0;
 	private GameObject currentHex = null;
 
 	void Start() {
@@ -17,6 +18,8 @@ public class PlayerController : MonoBehaviour {
 	}
 
 	void Update() {
+		UpdateInput();
+
 		Vector3 newPos = transform.position + (transform.forward * speed * Time.deltaTime);
 
 		if (currentHex != null) {
@@ -24,12 +27,13 @@ public class PlayerController : MonoBehaviour {
 			float centerDist = Toolbox.DistanceXZ(transform.position, currentHex.transform.position);
 
 			if (travelDist > centerDist) {
-				float turnAngle = GetTurnAngle();
 				if (turnAngle != 0) {
 					transform.Rotate(new Vector3(0, turnAngle, 0));
 
 					newPos = currentHex.transform.position;
 					newPos.y = transform.position.y;
+
+					turnAngle = 0;
 				}
 
 				currentHex = null;
@@ -37,6 +41,14 @@ public class PlayerController : MonoBehaviour {
 		}
 
 		transform.position = newPos;
+	}
+
+	void UpdateInput() {
+		if (Input.GetKeyDown(KeyCode.A))
+			turnAngle = LEFT;
+
+		if (Input.GetKeyDown(KeyCode.D))
+			turnAngle = RIGHT;
 	}
 
 	void OnTriggerEnter(Collider other) {
@@ -47,16 +59,6 @@ public class PlayerController : MonoBehaviour {
 		if (other.gameObject.CompareTag("Hex")) {
 			currentHex = other.gameObject;
 		}
-	}
-
-	float GetTurnAngle() {
-		if (Input.GetKey(KeyCode.A))
-			return LEFT;
-
-		if (Input.GetKey(KeyCode.D))
-			return RIGHT;
-
-		return 0;
 	}
 
 	bool isCollisionFatal(Collider other) {
