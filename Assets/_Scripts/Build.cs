@@ -37,8 +37,13 @@ public class Build : MonoBehaviour {
 				if (IsEdge(q, r, s, mapSizeWithWall)) {
 					Transform newWall = (Transform) Instantiate(wall, new Vector3(x, wallHeight / 2f, z), Quaternion.identity);
 
-					// Add twice the hex gap to the scale so that there is no gap in between wall pieces
-					newWall.localScale += new Vector3(hexGap * Toolbox.Instance.hexRatio * 2, 0, hexGap * 2);
+					// Set the scale to twice the spacing so there is no gap between wall pieces.
+					// This also allows the walls to scale automatically with the hex object.
+					newWall.localScale = new Vector3(
+						spacing * 2 * Toolbox.Instance.hexRatio,
+						newWall.localScale.y,
+						spacing * 2
+					);
 				} else {
 					Instantiate(hex, new Vector3(x, hexYOffset, z), Quaternion.identity);
 				}
